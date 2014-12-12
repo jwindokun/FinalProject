@@ -1,13 +1,24 @@
+if(!require(stringr)) install.packages ("stringr")
 library(stringr)
 
-fpath = paste(getwd(), "/data/", sep = "")
-fileName = "gourmetFoods.txt"   
-inputFile <- paste(fpath, fileName, sep = "")
 
-conn  <- file(inputFile, open = "r")
-line=readLines(conn, n = -1L, ok = TRUE, warn = FALSE)
-close(conn)
+if(!require(RCurl)) install.packages ("RCurl")
+library(RCurl)
 
+
+# Code to read local files
+# fpath = paste(getwd(), "/data/", sep = "")
+# fileName = "gourmetFoods.txt"   
+# inputFile <- paste(fpath, fileName, sep = "")
+# conn  <- file(inputFile, open = "r")
+# line=readLines(conn, n = -1L, ok = TRUE, warn = FALSE)
+# close(conn)
+
+x <- "https://raw.githubusercontent.com/jwindokun/FinalProject/master/data/gourmetFoods_test.txt"
+
+try ({
+line <- read.csv(x, header = FALSE, sep = "")
+})
 
 df <- data.frame(productID =character(), title = character(), price = as.numeric(character()), userID =character(), profileName = character(),
                  helpfulness = character(), score = as.numeric(character()), time = character(), summary = character(), text = character(),stringsAsFactors=FALSE)
