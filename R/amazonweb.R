@@ -2,20 +2,31 @@ if (!require(devtools)) install.packages('devtools')
 library(devtools)
 if (!require(rvest)) install_github("hadley/rvest")
 library(rvest)
+if (!require(XML)) install.packages('XML')
 library(XML)
+if (!require(stringr)) install.packages('stringr')
 library(stringr)
 
 
-fpath = paste(getwd(), "/data/", sep = "")
-fileName = "gourmetFoods.RData"   
-inputFile <- paste(fpath, fileName, sep = "")
-w = load(inputFile)
-str(gourmetFoods)
+# code to load from local file
+# fpath = paste(getwd(), "/data/", sep = "")
+# fileName = "gourmetFoods.RData"   
+# inputFile <- paste(fpath, fileName, sep = "")
+# w = load(inputFile)
+# str(gourmetFoods)
+
+
+githubURL = "https://github.com/jwindokun/FinalProject/raw/master/data/gourmetFoods.RData"
+
+try ({
+  
+  load(url(githubURL))
+  
+})
 
 
 dfAmazon <- data.frame(userID = character(), reviewerName =  character(), numReviews = numeric(), itemName = character(),
                        itemPrice = numeric(), date = character(), text = character(),stringsAsFactors=FALSE)
-
 
 # For demonstration purposes will only use the first 10 rows
 #for (i in length(gourmetFoods)) {

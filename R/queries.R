@@ -7,10 +7,17 @@ library(ggplot2)
 
 
 # code to load from local file
-fpath = paste(getwd(),"/data/gourmetFoods.RData", sep = "" )
-w = load(fpath)
+# fpath = paste(getwd(),"/data/gourmetFoods.RData", sep = "" )
+# w = load(fpath)
 
 
+githubURL = "https://github.com/jwindokun/FinalProject/raw/master/data/gourmetFoods.RData"
+
+try ({
+  
+  load(url(githubURL))
+  
+})
 
 
 t = 5
@@ -70,8 +77,22 @@ summary(fit)
 Sys.sleep (t)
 # look at Sentiment Analysis of summary and text
 
-fpath = paste(getwd(),"/data/gourmetFoodsAPI.RData", sep = "" )
-w = load(fpath)
+
+
+# fpath = paste(getwd(),"/data/gourmetFoodsAPI.RData", sep = "" )
+# w = load(fpath)
+
+
+
+githubURL = "https://github.com/jwindokun/FinalProject/raw/master/data/gourmetFoodsAPI.RData"
+
+try ({
+  
+  load(url(githubURL))
+  
+})
+
+
 
 ggplot(gourmetFoodsAPI, aes(x=gourmetFoodsAPI$apisummaryScore,y=gourmetFoodsAPI$apitextScore)) + geom_point(position=position_jitter(w=0.1,h=0.0), color ="red") +
   geom_smooth(method="lm", se=FALSE, fill = "blue", size = 2) + ylab('Text Score') + xlab('Summary Score') + ggtitle("Scatter Plot of Summry Score vs Text Score")

@@ -1,15 +1,25 @@
+
+if(!require(RCurl)) install.packages ("RCurl")
 library(RCurl)
+if(!require(rjson)) install.packages ("rjson")
 library(rjson)
 
+# Code to read local file
+
+# fpath = paste(getwd(), "/data/", sep = "")
+# fileName = "gourmetFoods.RData" 
+# w = load(paste(fpath, fileName, sep = "")   
+
+githubURL = "https://github.com/jwindokun/FinalProject/raw/master/data/gourmetFoods.RData"
+
+try ({
+  
+  load(url(githubURL))
+  
+})
 
 
-fpath = paste(getwd(), "/data/", sep = "")
-fileName = "gourmetFoods.RData" 
-w = load(paste(fpath, fileName, sep = ""))
-         
-         
 api_key = "45319ace2f7c43fc55d05c2f973ba6261a5de4f0"
-#api_key = "e1be8313a421479fde6d3eb9303c7ce26da7d315"
 
 
 api = paste("http://access.alchemyapi.com/calls/text/TextGetTextSentiment?apikey=", api_key, "&outputMode=json", "&text=", sep = "")
@@ -49,4 +59,4 @@ for (i in 1:2){
 
 gourmetFoodsAPI[1,]
 
-cat("\014") 
+#cat("\014") 

@@ -2,9 +2,6 @@ if(!require(stringr)) install.packages ("stringr")
 library(stringr)
 
 
-if(!require(RCurl)) install.packages ("RCurl")
-library(RCurl)
-
 
 # Code to read local files
 # fpath = paste(getwd(), "/data/", sep = "")
@@ -17,7 +14,9 @@ library(RCurl)
 x <- "https://raw.githubusercontent.com/jwindokun/FinalProject/master/data/gourmetFoods_test.txt"
 
 try ({
-line <- read.csv(x, header = FALSE, sep = "")
+  
+line=readLines(x, n = -1L, ok = TRUE, warn = FALSE)  
+
 })
 
 df <- data.frame(productID =character(), title = character(), price = as.numeric(character()), userID =character(), profileName = character(),
