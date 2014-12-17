@@ -106,6 +106,13 @@ line=readLines(x, n = -1L, ok = TRUE, warn = FALSE)
 
 })
 
+# Raw Amazon Reviews data
+
+for (q in 1:12){
+  
+  print (line[q])
+}
+
 
 try({
 df <- data.frame(productID =character(), title = character(), price = as.numeric(character()), userID =character(), profileName = character(),
